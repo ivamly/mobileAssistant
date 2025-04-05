@@ -1,9 +1,8 @@
 package com.zzx.backend.asr.service;
 
-
-import com.zzx.backend.asr.dto.Meeting;
-import com.zzx.backend.assistant.dto.MeetingRecord;
+import com.zzx.backend.common.dto.MeetingRecordData;
+import com.zzx.backend.common.dto.MeetingTranscriptionData;
 
 public interface ASRService {
-    Meeting getMeeting(MeetingRecord record);
+    MeetingTranscriptionData getMeetingTranscription(MeetingRecordData meetingRecordData);
 }

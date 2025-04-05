@@ -4,19 +4,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-public class Task {
+public class MeetingTranscription {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String description;
-    private String name;
-    private LocalDateTime deadline;
-    @ManyToOne
+    private String meetingTranscription;
+    @OneToOne
     private MeetingRecord meetingRecord;
 }

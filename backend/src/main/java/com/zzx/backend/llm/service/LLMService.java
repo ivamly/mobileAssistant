@@ -1,8 +1,13 @@
 package com.zzx.backend.llm.service;
 
-import com.zzx.backend.asr.dto.Meeting;
-import com.zzx.backend.llm.dto.MeetingResult;
+import com.zzx.backend.common.dto.MeetingSummaryData;
+import com.zzx.backend.common.dto.MeetingTaskData;
+import com.zzx.backend.common.dto.MeetingTranscriptionData;
+
+import java.util.List;
 
 public interface LLMService {
-    MeetingResult getMeeting(Meeting meeting);
+    MeetingSummaryData getMeetingSummary(MeetingTranscriptionData meetingTranscriptionData);
+
+    List<MeetingTaskData> searchMeetingTasks(MeetingSummaryData meetingSummary);
 }
