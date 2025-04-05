@@ -3,10 +3,15 @@ import {
   CopyDocumentIcon,
   DeleteDocumentIcon,
   EditDocumentIcon,
+  MailIcon,
+  SetingsIcon,
 } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 import workSpaces from "@/mock";
 import {
+  Accordion,
+  AccordionItem,
+  Avatar,
   Button,
   Card,
   CardBody,
@@ -26,7 +31,13 @@ import {
   Input,
   Listbox,
   ListboxItem,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
   ScrollShadow,
+  Spacer,
   useDisclosure,
   User,
 } from "@heroui/react";
@@ -37,6 +48,12 @@ import { useParams } from "react-router-dom";
 const iconClasses =
   "text-xl text-default-500 pointer-events-none flex-shrink-0";
 export default function Workspace() {
+  const [mail, setMail] = useState("");
+  const {
+    isOpen: isOpenModal,
+    onOpen: onOpenModal,
+    onOpenChange: onOpenModalChange,
+  } = useDisclosure();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [workSpace] = useState(workSpaces[0]);
   const [editingId, setEditingId] = useState<number | null>(null);
@@ -80,9 +97,220 @@ export default function Workspace() {
     setEditName("");
   };
 
+  const sendEmailHanlder = (onCloseModal: () => void) => {
+    console.log(mail);
+    onCloseModal();
+    // {
+    //   email:string,
+    //   html:string
+    //   }
+  };
+
   return (
     <DefaultLayout>
-      {" "}
+      <Modal isOpen={isOpenModal} onOpenChange={onOpenModalChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                Отправить расшифровку на почту
+              </ModalHeader>
+              <ModalBody>
+                <Input
+                  label="Почта"
+                  placeholder="Укажите почту"
+                  value={mail}
+                  onChange={(e) => setMail(e.target.value)}
+                  type="email"
+                />
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Отмена
+                </Button>
+                <Button
+                  color="primary"
+                  onPress={() => sendEmailHanlder(onClose)}
+                >
+                  Отправить
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <div className="text-2xl font-semibold mb-10 flex justify-between p-2">
+        <div>Расшифровки</div>
+      </div>
+      <Divider />
+      <Spacer />
+      <Card className="m-2" shadow="sm" key={"id"}>
+        <CardHeader className="flex gap-3 px-5">
+          <div className="flex justify-between w-full">
+            <div className="flex flex-col">
+              <p className="text-md">{workSpace.name}</p>
+              <p className="text-small text-default-500">
+                {new Date().toLocaleDateString()}{" "}
+                {new Date().toLocaleTimeString()}
+              </p>
+            </div>
+            <Dropdown>
+              <DropdownTrigger>
+                <Button isIconOnly variant="flat" size="sm">
+                  <SetingsIcon />
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu variant="faded">
+                <DropdownSection showDivider title="Actions">
+                  <DropdownItem
+                    key="edit"
+                    description="Позволяет редактировать участников всстречи"
+                    shortcut="⌘⇧E"
+                    startContent={<EditDocumentIcon className={iconClasses} />}
+                    onPress={onOpen}
+                  >
+                    Редактировать участников
+                  </DropdownItem>
+                  <DropdownItem
+                    key="SEND"
+                    description="Отправить расшифровку на указанную почту"
+                    shortcut="⌘⇧E"
+                    onPress={onOpenModal}
+                    startContent={<MailIcon className={iconClasses} />}
+                  >
+                    Отправить
+                  </DropdownItem>
+                  <DropdownItem
+                    key="copy"
+                    description="Скопирует ссылку на встречу"
+                    shortcut="⌘C"
+                    startContent={<CopyDocumentIcon className={iconClasses} />}
+                  >
+                    Копировать ссылку
+                  </DropdownItem>
+                </DropdownSection>
+                <DropdownSection>
+                  <DropdownItem
+                    key="delete"
+                    className="text-danger"
+                    shortcut="⌘⇧D"
+                    startContent={
+                      <DeleteDocumentIcon
+                        className={clsx(iconClasses, "text-danger")}
+                      />
+                    }
+                  >
+                    Удалить встречу
+                  </DropdownItem>
+                </DropdownSection>
+              </DropdownMenu>
+            </Dropdown>
+          </div>
+        </CardHeader>
+        <Divider />
+        <CardBody>
+          <Accordion fullWidth>
+            <AccordionItem
+              key="1"
+              subtitle="Нажмите чтобы открыть"
+              title="Спикеры"
+            >
+              <Listbox>
+                {workSpace.participants.map(({ id, name }) => (
+                  <ListboxItem key={id}>
+                    <User description="Product Designer" name={name} />
+                  </ListboxItem>
+                ))}
+              </Listbox>
+            </AccordionItem>
+            <AccordionItem
+              key="2"
+              subtitle="Нажмите чтобы открыть"
+              title="Выжимка встречи"
+            >
+              <ScrollShadow className="flex-1 p-4">
+                <div className="flex flex-col gap-4 w-full">{workSpace.summary}</div>
+              </ScrollShadow>
+            </AccordionItem>
+            <AccordionItem
+              key="3"
+              subtitle="Нажмите чтобы открыть"
+              title="Задачи"
+            >
+              <ScrollShadow className="flex-1 p-4">
+                <div className="flex flex-col gap-4">
+                  {workSpace.tasks.map((task) => (
+                    <Card key={task.id} className="p-4">
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-start justify-between">
+                          <h4 className="text-base font-medium">{task.name}</h4>
+                        </div>
+                        <Divider className="my-2" />
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <Avatar
+                              src={task.author.name}
+                              name={task.author.name}
+                              size="sm"
+                            />
+                            <span className="text-sm text-default-500">
+                              {task.author.name}
+                            </span>
+                          </div>
+                          <span className="text-xs text-default-400">
+                            Due: {new Date(0).toLocaleDateString()}
+                          </span>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </ScrollShadow>
+            </AccordionItem>
+            <AccordionItem
+              key="4"
+              subtitle="Расшифровка встречи"
+              title="Полная расшифрока"
+            >
+              <ScrollShadow className="flex-1 p-4">
+                <div className="flex flex-col gap-4">
+                  <ScrollShadow className="flex-1">
+                    <div className="flex flex-col gap-4 w-full">
+                      {workSpace.dialog.map(
+                        ({ author, id, speech }, i, arr) => (
+                          <div
+                            key={id}
+                            className={`flex gap-3 w-full flex-col items-start`}
+                          >
+                            <User
+                              description="Product Designer"
+                              name={author.name}
+                            />
+                            <div className={`flex flex-col max-w-full`}>
+                              <div className={`rounded-lg flex flex-1 w-full`}>
+                                <p className="text-sm w-full text-wrap">
+                                  {speech}
+                                </p>
+                              </div>
+                              <span className="mt-1 text-xs text-default-400">
+                                {new Date(0).toLocaleTimeString()}
+                              </span>
+                            </div>
+                            <Divider hidden={i === arr.length - 1} />
+                          </div>
+                        )
+                      )}
+                    </div>
+                  </ScrollShadow>
+                </div>
+              </ScrollShadow>
+            </AccordionItem>
+          </Accordion>
+        </CardBody>
+      </Card>
+      <br />
+      <Divider />
+      <br />
       <Drawer isOpen={isOpen} onOpenChange={onOpenChange}>
         <DrawerContent>
           {(onClose) => (
@@ -164,90 +392,6 @@ export default function Workspace() {
           )}
         </DrawerContent>
       </Drawer>
-      <Card className="m-2" shadow="sm">
-        <CardHeader className="flex gap-3">
-          <Image
-            alt="logo"
-            height={40}
-            radius="sm"
-            src="https://loremflickr.com/40/40"
-            width={40}
-          />
-          <div className="flex justify-between w-full">
-            <div className="flex flex-col">
-              <p className="text-md">{workSpace.name}</p>
-              <p className="text-small text-default-500">
-                {new Date().toLocaleDateString()}{" "}
-                {new Date().toLocaleTimeString()}
-              </p>
-            </div>
-            <Dropdown>
-              <DropdownTrigger>
-                <Button variant="bordered">Параметры встречи</Button>
-              </DropdownTrigger>
-              <DropdownMenu variant="faded">
-                <DropdownSection showDivider title="Actions">
-                  <DropdownItem
-                    key="edit"
-                    description="Позволяет редактировать участников всстречи"
-                    shortcut="⌘⇧E"
-                    startContent={<EditDocumentIcon className={iconClasses} />}
-                    onPress={onOpen}
-                  >
-                    Редактировать участников
-                  </DropdownItem>
-                  <DropdownItem
-                    key="copy"
-                    description="Скопирует ссылку на встречу"
-                    shortcut="⌘C"
-                    startContent={<CopyDocumentIcon className={iconClasses} />}
-                  >
-                    Копировать ссылку
-                  </DropdownItem>
-                </DropdownSection>
-                <DropdownSection>
-                  <DropdownItem
-                    key="delete"
-                    className="text-danger"
-                    shortcut="⌘⇧D"
-                    startContent={
-                      <DeleteDocumentIcon
-                        className={clsx(iconClasses, "text-danger")}
-                      />
-                    }
-                  >
-                    Удалить встречу
-                  </DropdownItem>
-                </DropdownSection>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
-        </CardHeader>
-        <Divider />
-        <CardBody>
-          <ScrollShadow className="flex-1 p-4">
-            <div className="flex flex-col gap-4 w-full">
-              {workSpace.dialog.map(({ author, id, speech }, i, arr) => (
-                <div
-                  key={id}
-                  className={`flex gap-3 w-full flex-col items-start`}
-                >
-                  <User description="Product Designer" name={author.name} />
-                  <div className={`flex flex-col max-w-full`}>
-                    <div className={`rounded-lg p-3 flex flex-1 w-full`}>
-                      <p className="text-sm w-full text-wrap">{speech}</p>
-                    </div>
-                    <span className="mt-1 text-xs text-default-400">
-                      {new Date(0).toLocaleTimeString()}
-                    </span>
-                  </div>
-                  <Divider hidden={i === arr.length - 1} />
-                </div>
-              ))}
-            </div>
-          </ScrollShadow>
-        </CardBody>
-      </Card>
     </DefaultLayout>
   );
 }

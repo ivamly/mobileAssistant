@@ -9,7 +9,7 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Рабочее пространство",
+      label: "Расшифровки",
       href: "/workspace",
     },
     {
@@ -23,7 +23,7 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Рабочее пространство",
+      label: "Расшифровки",
       href: "/workspace",
     },
     {

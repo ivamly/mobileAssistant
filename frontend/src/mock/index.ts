@@ -6,15 +6,8 @@ const workSpaces = [
       { name: "Иван", id: 1 },
       { name: "Петр", id: 2 },
     ],
-    summary: [
-      {
-        id: 1,
-        author: { name: "Иван", id: 1 },
-        speech:
-          "ПриПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветвет",
-      },
-      { id: 2, author: { name: "Петр", id: 1 }, speech: "ШО НАДА ТЕБЕ" },
-    ],
+    summary:
+      "lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000",
     tasks: [
       { id: 1, name: "Задача 1", author: { name: "Иван", id: 1 } },
       { id: 2, name: "Задача 2", author: { name: "Иван", id: 1 } },
@@ -36,10 +29,9 @@ const workSpaces = [
       { name: "Иван", id: 1 },
       { name: "Петр", id: 2 },
     ],
-    summary: [
-      { id: 1, author: { name: "Иван", id: 1 }, speech: "Привет" },
-      { id: 2, author: { name: "Петр", id: 1 }, speech: "ШО НАДА ТЕБЕ" },
-    ],
+    summary:
+      "lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000",
+
     tasks: [
       { id: 1, name: "Задача 1", author: { name: "Иван", id: 1 } },
       { id: 2, name: "Задача 2", author: { name: "Иван", id: 1 } },
@@ -65,15 +57,9 @@ const workSpaces = [
       { id: 1, name: "Задача 1", author: { name: "Иван", id: 1 } },
       { id: 2, name: "Задача 2", author: { name: "Иван", id: 1 } },
     ],
-    summary: [
-      {
-        id: 1,
-        author: { name: "Иван", id: 1 },
-        speech:
-          "ПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПривет",
-      },
-      { id: 2, author: { name: "Петр", id: 1 }, speech: "ШО НАДА ТЕБЕ" },
-    ],
+    summary:
+      "lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000",
+
     dialog: [
       {
         id: 1,
@@ -95,15 +81,9 @@ const workSpaces = [
       { id: 1, name: "Задача 1", author: { name: "Иван", id: 1 } },
       { id: 2, name: "Задача 2", author: { name: "Иван", id: 1 } },
     ],
-    summary: [
-      {
-        id: 1,
-        author: { name: "Иван", id: 1 },
-        speech:
-          "ПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПриветПривет",
-      },
-      { id: 2, author: { name: "Петр", id: 1 }, speech: "ШО НАДА ТЕБЕ" },
-    ],
+    summary:
+      "lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000lorem1000",
+
     dialog: [
       {
         id: 1,

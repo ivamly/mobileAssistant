@@ -6,6 +6,8 @@ import {
   Input,
   Button,
   Progress,
+  Divider,
+  Spacer,
 } from "@heroui/react";
 import DefaultLayout from "@/layouts/default";
 import { Icon } from "@iconify/react";
@@ -57,17 +59,18 @@ export default function Create() {
 
   return (
     <DefaultLayout>
-      <div className="text-2xl font-semibold mb-10 flex justify-between">
-        <div>Новое пространство</div>
+      <div className="text-2xl font-semibold mb-10 flex justify-between p-2">
+        <div>Загрузить для расшифровки</div>
       </div>
-
+      <Divider />
+      <Spacer />
       <Card className="w-full max-w-md">
         <CardHeader className="flex gap-3">
           <Icon icon="lucide:upload" className="text-xl" />
           <div className="flex flex-col">
-            <p className="text-md">File Upload</p>
+            <p className="text-md">Загрузка файла</p>
             <p className="text-small text-default-500">
-              Upload video or audio files
+              Загрузите видео или аудио формат файла
             </p>
           </div>
         </CardHeader>
@@ -77,14 +80,14 @@ export default function Create() {
               type="file"
               accept="video/*,audio/*"
               onChange={handleFileChange}
-              description="Supported formats: MP4, MP3, WAV, etc."
+              description="Поддерка форматов: MP4, MP3, WAV, etc."
               isDisabled={isUploading}
             />
 
             {file && (
               <div className="space-y-2">
                 <p className="text-small">
-                  Selected file: {file.name}
+                  Выбранный файл: {file.name}
                   <span className="ml-2 text-default-500">
                     ({(file.size / 1024 / 1024).toFixed(2)} MB)
                   </span>
@@ -94,7 +97,6 @@ export default function Create() {
 
             {isUploading && (
               <Progress
-                aria-label="Upload progress"
                 value={uploadProgress}
                 className="max-w-md"
                 color="primary"
@@ -109,7 +111,7 @@ export default function Create() {
               isDisabled={!file || isUploading}
               fullWidth
             >
-              Upload File
+              Загрузить файл
             </Button>
           </form>
         </CardBody>
