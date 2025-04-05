@@ -15,7 +15,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-public class MeetingRecord {
+public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -23,14 +23,14 @@ public class MeetingRecord {
     private File content; // audio file
     private OffsetDateTime meetingTime;
     @OneToOne(mappedBy = "meetingRecord")
-    private MeetingTranscription meetingTranscription;
+    private Transcription transcription;
     @OneToOne(mappedBy = "meetingRecord")
-    private MeetingSummary meetingSummary;
+    private Summary summary;
     @ManyToMany
     @JoinTable(
             name = "meeting_record_meeting_participants",
             joinColumns = @JoinColumn(name = "meeting_record_id"),
             inverseJoinColumns = @JoinColumn(name = "meeting_paticipants_id")
     )
-    private Set<MeetingParticipant> meetingParticipants;
+    private Set<Participant> meetingParticipants;
 }

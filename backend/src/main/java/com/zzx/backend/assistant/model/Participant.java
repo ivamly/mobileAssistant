@@ -1,19 +1,23 @@
 package com.zzx.backend.assistant.model;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToMany;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
-public class MeetingSummary {
+public class Participant {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String meetingSummary;
-    @OneToOne
-    private MeetingRecord meetingRecord;
+    private String firstName;
+    private String lastName;
+    private String email;
+    @ManyToMany(mappedBy = "meetingParticipants")
+    private Set<Record> record;
 }

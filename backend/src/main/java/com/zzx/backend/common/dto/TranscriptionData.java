@@ -1,8 +1,8 @@
 package com.zzx.backend.common.dto;
 
-public class MeetingTranscriptionData {
+public class TranscriptionData {
 
     private String id;
     private String meetingTranscription;
-    private MeetingRecordData meetingRecord;
+    private RecordData meetingRecord;
 }

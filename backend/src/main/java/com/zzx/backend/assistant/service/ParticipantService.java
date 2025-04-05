@@ -1,4 +1,4 @@
 package com.zzx.backend.assistant.service;
 
-public interface MeetingParticipantService {
+public interface ParticipantService {
 }

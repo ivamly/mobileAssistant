@@ -9,11 +9,11 @@ import jakarta.persistence.OneToOne;
 import java.util.UUID;
 
 @Entity
-public class MeetingTranscription {
+public class Transcription {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String meetingTranscription;
     @OneToOne
-    private MeetingRecord meetingRecord;
+    private Record record;
 }

@@ -1,7 +1,7 @@
 package com.zzx.backend.common.dto;
 
-public class MeetingSummaryData {
+public class SummaryData {
     private String id;
     private String meetingSummary;
-    private MeetingRecordData meetingRecord;
+    private RecordData meetingRecord;
 }

@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
-public class MeetingTask {
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -18,7 +18,7 @@ public class MeetingTask {
     private String description;
     private OffsetDateTime deadline;
     @ManyToOne
-    private MeetingRecord meetingRecord;
+    private Record record;
     @ManyToOne
-    private MeetingParticipant meetingParticipant;
+    private Participant meetingParticipant;
 }
