@@ -10,5 +10,5 @@ public interface LLMService {
 
     SummaryData getSummary(TranscriptionData transcriptionData);
 
-    List<TaskData> searchTasks(SummaryData meetingSummary);
+    List<TaskData> searchTasks(TranscriptionData transcriptionData);
 }
