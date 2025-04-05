@@ -1,4 +1,4 @@
-package com.zzx.mobileassistant.assistant.dto;
+package com.zzx.backend.assistant.dto;
 
 import lombok.Data;
 

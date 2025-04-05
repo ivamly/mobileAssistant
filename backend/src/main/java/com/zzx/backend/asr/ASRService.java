@@ -1,7 +1,8 @@
-package com.zzx.mobileassistant.asr;
+package com.zzx.backend.asr;
 
-import com.zzx.mobileassistant.asr.dto.Meeting;
-import com.zzx.mobileassistant.assistant.dto.MeetingRecord;
+
+import com.zzx.backend.asr.dto.Meeting;
+import com.zzx.backend.assistant.dto.MeetingRecord;
 
 public interface ASRService {
     Meeting getMeeting(MeetingRecord record);
