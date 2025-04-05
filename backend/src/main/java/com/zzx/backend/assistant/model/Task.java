@@ -21,5 +21,5 @@ public class Task {
     @ManyToOne
     private Record record;
     @ManyToOne
-    private Participant meetingParticipant;
+    private Participant participant;
 }

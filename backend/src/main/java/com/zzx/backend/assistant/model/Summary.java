@@ -14,7 +14,7 @@ public class Summary {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String meetingSummary;
+    private String summary;
     @OneToOne
     private Record record;
 }

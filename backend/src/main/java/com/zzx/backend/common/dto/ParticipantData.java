@@ -8,5 +8,5 @@ public class ParticipantData {
     private String firstName;
     private String lastName;
     private String email;
-    private Set<RecordData> meetingRecord;
+    private Set<RecordData> record;
 }

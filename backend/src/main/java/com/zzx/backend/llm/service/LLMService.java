@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface LLMService {
 
-    SummaryData getMeetingSummary(TranscriptionData transcriptionData);
+    SummaryData getSummary(TranscriptionData transcriptionData);
 
-    List<TaskData> searchMeetingTasks(SummaryData meetingSummary);
+    List<TaskData> searchTasks(SummaryData meetingSummary);
 }

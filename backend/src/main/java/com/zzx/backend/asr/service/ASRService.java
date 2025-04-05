@@ -5,5 +5,5 @@ import com.zzx.backend.common.dto.TranscriptionData;
 
 public interface ASRService {
 
-    TranscriptionData getMeetingTranscription(RecordData recordData);
+    TranscriptionData getTranscription(RecordData recordData);
 }

@@ -14,7 +14,7 @@ public class Transcription {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String meetingTranscription;
+    private String transcription;
     @OneToOne
     private Record record;
 }

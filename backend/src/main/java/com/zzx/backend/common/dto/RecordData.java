@@ -11,7 +11,7 @@ public class RecordData {
     private String id;
     private File content; // audio file
     private OffsetDateTime meetingTime;
-    private TranscriptionData meetingTranscription;
+    private TranscriptionData transcription;
     private Summary summary;
-    private Set<ParticipantData> meetingParticipants;
+    private Set<ParticipantData> participants;
 }

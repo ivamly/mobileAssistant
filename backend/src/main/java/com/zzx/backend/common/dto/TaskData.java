@@ -8,6 +8,6 @@ public class TaskData {
     private String title;
     private String description;
     private OffsetDateTime deadline;
-    private RecordData meetingRecord;
-    private ParticipantData meetingParticipant;
+    private RecordData record;
+    private ParticipantData participant;
 }

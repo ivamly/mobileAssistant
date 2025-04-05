@@ -21,17 +21,17 @@ public class Record {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String title;
-    private File content; // audio file
+    private File content; // audio/video file?
     private OffsetDateTime meetingTime;
-    @OneToOne(mappedBy = "meetingRecord")
+    @OneToOne(mappedBy = "record")
     private Transcription transcription;
-    @OneToOne(mappedBy = "meetingRecord")
+    @OneToOne(mappedBy = "record")
     private Summary summary;
     @ManyToMany
     @JoinTable(
-            name = "meeting_record_meeting_participants",
-            joinColumns = @JoinColumn(name = "meeting_record_id"),
-            inverseJoinColumns = @JoinColumn(name = "meeting_paticipants_id")
+            name = "record_participants",
+            joinColumns = @JoinColumn(name = "record_id"),
+            inverseJoinColumns = @JoinColumn(name = "participants_id")
     )
-    private Set<Participant> meetingParticipants;
+    private Set<Participant> participants;
 }
