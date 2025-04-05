@@ -12,6 +12,7 @@ import java.util.UUID;
 
 @Entity
 public class Participant {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

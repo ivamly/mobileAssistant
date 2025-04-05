@@ -10,6 +10,7 @@ import java.util.UUID;
 
 @Entity
 public class Transcription {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

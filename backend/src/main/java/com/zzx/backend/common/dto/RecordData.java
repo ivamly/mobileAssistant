@@ -7,6 +7,7 @@ import java.time.OffsetDateTime;
 import java.util.Set;
 
 public class RecordData {
+
     private String id;
     private File content; // audio file
     private OffsetDateTime meetingTime;

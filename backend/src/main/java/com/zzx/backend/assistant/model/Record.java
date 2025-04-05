@@ -16,6 +16,7 @@ import java.util.UUID;
 
 @Entity
 public class Record {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
