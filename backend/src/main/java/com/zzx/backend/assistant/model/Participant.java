@@ -18,7 +18,6 @@ public class Participant {
     private UUID id;
     private String firstName;
     private String lastName;
-    private String email;
     @ManyToMany(mappedBy = "participants")
     private Set<Record> record;
 }
