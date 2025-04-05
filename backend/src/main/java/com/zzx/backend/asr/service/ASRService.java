@@ -1,4 +1,4 @@
-package com.zzx.backend.asr;
+package com.zzx.backend.asr.service;
 
 
 import com.zzx.backend.asr.dto.Meeting;
