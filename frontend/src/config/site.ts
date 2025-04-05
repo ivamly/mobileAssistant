@@ -12,10 +12,6 @@ export const siteConfig = {
       label: "Расшифровки",
       href: "/workspace",
     },
-    {
-      label: "Задачи",
-      href: "/task",
-    },
   ],
   navMenuItems: [
     {
@@ -25,10 +21,6 @@ export const siteConfig = {
     {
       label: "Расшифровки",
       href: "/workspace",
-    },
-    {
-      label: "Задачи",
-      href: "/task",
     },
   ],
   links: {
