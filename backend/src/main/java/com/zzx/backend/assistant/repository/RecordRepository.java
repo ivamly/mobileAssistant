@@ -11,9 +11,9 @@ import java.util.UUID;
 public interface RecordRepository extends JpaRepository<Record, UUID> {
 
     @Query(value = """
-            SELECT r.title as title, r.meetingTime as date, s.summary as summary 
-            FROM Record r 
-            JOIN Summary s ON r.id = s.record.id
+            SELECT new com.example.RecordWithSummaryRs(r.title, r.meetingTime, s.summary) 
+            FROM Summary s 
+            JOIN s.record r
             """)
     List<RecordWithSummaryRs> findAllRecordsWithSummery();
 }
