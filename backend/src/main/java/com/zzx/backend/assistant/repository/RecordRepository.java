@@ -11,7 +11,7 @@ import java.util.UUID;
 public interface RecordRepository extends JpaRepository<Record, UUID> {
 
     @Query(value = """
-            SELECT new com.example.RecordWithSummaryRs(r.title, r.meetingTime, s.summary) 
+            SELECT new com.zzx.backend.assistant.dto.rs.RecordWithSummaryRs(r.title, r.meetingTime, s.summary) 
             FROM Summary s 
             JOIN s.record r
             """)
