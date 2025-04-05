@@ -19,6 +19,7 @@ public class MeetingRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    private String title;
     private File content; // audio file
     private OffsetDateTime meetingTime;
     @OneToOne(mappedBy = "meetingRecord")
