@@ -16,8 +16,8 @@ public class Participant {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private String jobTitle;
     @ManyToMany(mappedBy = "participants")
     private Set<Record> record;
 }

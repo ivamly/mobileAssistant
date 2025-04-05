@@ -5,7 +5,7 @@ import java.util.Set;
 public class ParticipantData {
 
     private String id;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private String jobTitle;
     private Set<RecordData> record;
 }
