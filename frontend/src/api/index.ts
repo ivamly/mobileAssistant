@@ -6,7 +6,7 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 export const api = createApi({
   reducerPath: "api",
   tagTypes: ["Transcript"],
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8080/api/v1/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8080" }),
   endpoints: (build) => ({
     getTranscripts: build.query<typeof workSpaces, void>({
       providesTags: ["Transcript"],
