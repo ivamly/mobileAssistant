@@ -10,30 +10,30 @@ export const api = createApi({
   endpoints: (build) => ({
     getTranscripts: build.query<typeof workSpaces, void>({
       providesTags: ["Transcript"],
-      query: () => `transcripts`,
+      query: () => `/api/v1/records`,
     }),
     getTranscript: build.query<(typeof workSpaces)[number], { id: string }>({
-      query: ({ id }) => `transcripts/${id}`,
+      query: ({ id }) => `records/${id}`,
       providesTags: ["Transcript"],
     }),
     sendToEmail: build.query({
-      query: ({ id, data }) => ({
-        url: `email/${id}`,
-        method: "PUT",
+      query: (data) => ({
+        url: `sendOnEmail`,
+        method: "POST",
         body: data,
       }),
     }),
     uploadFile: build.query({
-      query: ({ id, data }) => ({
-        url: `files/upload/${id}`,
-        method: "PUT",
+      query: (data) => ({
+        url: `files/upload`,
+        method: "POST",
         body: data,
       }),
     }),
     editSpeeckerNames: build.mutation({
-      query: ({ id, data }) => ({
-        url: `speeckers/${id}`,
-        method: "PUT",
+      query: (data) => ({
+        url: `participants/updateName`,
+        method: "PATCH",
         body: data,
       }),
       invalidatesTags: ["Transcript"],

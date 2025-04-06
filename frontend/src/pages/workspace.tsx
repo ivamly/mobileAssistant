@@ -1,4 +1,8 @@
-import { useGetTranscriptQuery, useLazySendToEmailQuery } from "@/api";
+import {
+  useEditSpeeckerNamesMutation,
+  useGetTranscriptQuery,
+  useLazySendToEmailQuery,
+} from "@/api";
 import {
   AddNoteIcon,
   CopyDocumentIcon,
@@ -50,6 +54,7 @@ import { useParams } from "react-router-dom";
 const iconClasses =
   "text-xl text-default-500 pointer-events-none flex-shrink-0";
 export default function Workspace() {
+  const [edit] = useEditSpeeckerNamesMutation();
   const params = useParams();
   const {
     data: workSpaceData,
@@ -102,7 +107,7 @@ export default function Workspace() {
   // const params = useParams();
 
   const handleApiSaveChanges = (closeHandler: () => void) => {
-    console.log(updatedUsers);
+    edit(updatedUsers);
     closeHandler();
   };
 
