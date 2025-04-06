@@ -1,4 +1,4 @@
-package com.zzx.backend.assistant.error;
+package com.zzx.backend.assistant.exception;
 
 public class RecordNotFoundException extends RuntimeException{
 

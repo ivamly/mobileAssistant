@@ -2,7 +2,7 @@ package com.zzx.backend.assistant.service.view.impl;
 
 import com.zzx.backend.assistant.dto.rs.FullRecordInfoRs;
 import com.zzx.backend.assistant.dto.rs.RecordWithSummaryRs;
-import com.zzx.backend.assistant.error.UiViewException;
+import com.zzx.backend.assistant.exception.UiViewException;
 import com.zzx.backend.assistant.service.entity.ParticipantService;
 import com.zzx.backend.assistant.service.entity.RecordService;
 import com.zzx.backend.assistant.service.entity.SummaryService;

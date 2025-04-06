@@ -1,8 +1,8 @@
-package com.zzx.backend.assistant.controller.handler;
+package com.zzx.backend.assistant.exception.handler;
 
 import com.zzx.backend.assistant.dto.rs.RecordWithSummaryRs;
-import com.zzx.backend.assistant.error.ParticipantNotFoundException;
-import com.zzx.backend.assistant.error.UiViewException;
+import com.zzx.backend.assistant.exception.ParticipantNotFoundException;
+import com.zzx.backend.assistant.exception.UiViewException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

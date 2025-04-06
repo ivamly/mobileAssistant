@@ -1,7 +1,7 @@
 package com.zzx.backend.assistant.service.entity;
 
 import com.zzx.backend.assistant.dto.rq.ParticipantNameUpdateRq;
-import com.zzx.backend.assistant.error.ParticipantNotFoundException;
+import com.zzx.backend.assistant.exception.ParticipantNotFoundException;
 import com.zzx.backend.common.dto.ParticipantData;
 
 public interface ParticipantService {

@@ -1,7 +1,7 @@
 package com.zzx.backend.assistant.service.entity.impl;
 
 import com.zzx.backend.assistant.dto.rs.RecordWithSummaryRs;
-import com.zzx.backend.assistant.error.RecordNotFoundException;
+import com.zzx.backend.assistant.exception.RecordNotFoundException;
 import com.zzx.backend.assistant.mapper.RecordMapper;
 import com.zzx.backend.assistant.repository.RecordRepository;
 import com.zzx.backend.assistant.service.entity.RecordService;
