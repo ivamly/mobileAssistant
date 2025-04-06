@@ -1,6 +1,7 @@
 package com.zzx.backend.assistant.controller.impl;
 
 import com.zzx.backend.assistant.controller.RecordController;
+import com.zzx.backend.assistant.dto.rs.FullRecordInfoRs;
 import com.zzx.backend.assistant.dto.rs.RecordWithSummaryRs;
 import com.zzx.backend.assistant.service.view.impl.UiViewServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,12 @@ public class RecordControllerImpl implements RecordController {
     private final UiViewServiceImpl uiViewServiceImpl;
 
     @Override
-    public Collection<RecordWithSummaryRs> getAllForUi() {
-        return uiViewServiceImpl.getRecordWithSummary();
+    public Collection<RecordWithSummaryRs> findAllRecordWithSummary() {
+        return uiViewServiceImpl.findAllRecordWithSummary();
+    }
+
+    @Override
+    public FullRecordInfoRs getFullRecordInfo(String id) {
+        return null;
     }
 }
