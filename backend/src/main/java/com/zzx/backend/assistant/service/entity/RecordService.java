@@ -9,5 +9,7 @@ public interface RecordService {
 
     RecordData getById(String id);
 
+    RecordData save(RecordData recordData);
+
     Collection<RecordWithSummaryRs> findAllRecordsWithSummery();
 }

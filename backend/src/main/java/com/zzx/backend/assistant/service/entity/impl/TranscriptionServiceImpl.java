@@ -5,14 +5,22 @@ import com.zzx.backend.common.dto.TranscriptionData;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class TranscriptionServiceImpl implements TranscriptionService {
+
+    private final TranscriptionRepository repository;
+    private final TranscriptionMapper mapper;
+
     @Override
     public TranscriptionData getById(String id) {
         return new TranscriptionData();
     }
 
-    @Override
-    public void save(TranscriptionData transcriptionData) {
-
+    public TranscriptionData save(TranscriptionData transcriptionData) {
+        return mapper.toData(
+                repository.save(
+                        mapper.toEntity(transcriptionData)
+                )
+        );
     }
 }

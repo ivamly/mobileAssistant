@@ -28,6 +28,15 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
+    public RecordData save(RecordData recordData) {
+        return mapper.toData(
+                repository.save(
+                        mapper.toEntity(recordData)
+                )
+        );
+    }
+
+    @Override
     public Collection<RecordWithSummaryRs> findAllRecordsWithSummery() {
         return repository.findAllRecordsWithSummery();
     }

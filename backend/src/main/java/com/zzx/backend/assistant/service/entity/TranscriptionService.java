@@ -6,6 +6,5 @@ public interface TranscriptionService {
 
     TranscriptionData getById(String id);
 
-    void save(TranscriptionData transcriptionData);
-
+    TranscriptionData save(TranscriptionData transcriptionData);
 }

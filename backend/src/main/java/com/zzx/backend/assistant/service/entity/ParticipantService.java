@@ -10,6 +10,8 @@ public interface ParticipantService {
 
     ParticipantData getById(String id) throws ParticipantNotFoundException;
 
+    ParticipantData save(ParticipantData participantData);
+
     ParticipantData updateName(ParticipantNameUpdateRq rq) throws ParticipantNotFoundException;
 
     void saveAll(Collection<ParticipantData> participantsData);

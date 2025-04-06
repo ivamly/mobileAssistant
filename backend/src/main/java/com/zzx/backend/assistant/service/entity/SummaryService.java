@@ -4,6 +4,5 @@ import com.zzx.backend.common.dto.SummaryData;
 
 public interface SummaryService {
 
-    void save(SummaryData summaryData);
-
+    SummaryData save(SummaryData summaryData);
 }

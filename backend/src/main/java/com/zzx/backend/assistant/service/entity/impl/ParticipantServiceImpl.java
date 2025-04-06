@@ -28,6 +28,15 @@ public class ParticipantServiceImpl implements ParticipantService {
     }
 
     @Override
+    public ParticipantData save(ParticipantData participantData) {
+        return mapper.toData(
+                repository.save(
+                        mapper.toEntity(participantData)
+                )
+        );
+    }
+
+    @Override
     public ParticipantData updateName(ParticipantNameUpdateRq rq) {
 
         ParticipantData participant = getById(rq.id());
