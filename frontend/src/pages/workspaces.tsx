@@ -1,5 +1,6 @@
+import { useGetTranscriptsQuery } from "@/api";
 import DefaultLayout from "@/layouts/default";
-import workSpaces from "@/mock";
+
 import {
   Card,
   CardHeader,
@@ -12,9 +13,29 @@ import {
   ScrollShadow,
   Spacer,
   Button,
+  Spinner,
+  Alert,
 } from "@heroui/react";
 
 export default function Workspaces() {
+  const { data: workSpaces, isFetching, isLoading } = useGetTranscriptsQuery();
+
+  if (isLoading || isFetching)
+    return (
+      <DefaultLayout>
+        <div className="flex justify-center items-center h-full">
+          <Spinner />
+        </div>
+      </DefaultLayout>
+    );
+  if (!workSpaces)
+    return (
+      <DefaultLayout>
+        <div className="flex justify-center items-center p-10">
+          <Alert color="danger">Нет данных</Alert>
+        </div>
+      </DefaultLayout>
+    );
   return (
     <DefaultLayout>
       <div className="text-2xl font-semibold mb-10 flex justify-between p-2">

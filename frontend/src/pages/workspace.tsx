@@ -1,3 +1,4 @@
+import { useGetTranscriptQuery, useLazySendToEmailQuery } from "@/api";
 import {
   AddNoteIcon,
   CopyDocumentIcon,
@@ -7,10 +8,11 @@ import {
   SetingsIcon,
 } from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
-import workSpaces from "@/mock";
+
 import {
   Accordion,
   AccordionItem,
+  Alert,
   Avatar,
   Button,
   Card,
@@ -27,7 +29,6 @@ import {
   DropdownMenu,
   DropdownSection,
   DropdownTrigger,
-  Image,
   Input,
   Listbox,
   ListboxItem,
@@ -38,6 +39,7 @@ import {
   ModalHeader,
   ScrollShadow,
   Spacer,
+  Spinner,
   useDisclosure,
   User,
 } from "@heroui/react";
@@ -48,14 +50,42 @@ import { useParams } from "react-router-dom";
 const iconClasses =
   "text-xl text-default-500 pointer-events-none flex-shrink-0";
 export default function Workspace() {
+  const params = useParams();
+  const {
+    data: workSpaceData,
+    isFetching,
+    isLoading,
+  } = useGetTranscriptQuery(
+    { id: params.id! },
+    { skip: typeof params.id !== "string" }
+  );
+
+  if (isLoading || isFetching)
+    return (
+      <DefaultLayout>
+        <div className="flex justify-center items-center h-full">
+          <Spinner />
+        </div>
+      </DefaultLayout>
+    );
+  if (!workSpaceData)
+    return (
+      <DefaultLayout>
+        <div className="flex justify-center items-center p-10">
+          <Alert color="danger">Нет данных</Alert>
+        </div>
+      </DefaultLayout>
+    );
+
   const [mail, setMail] = useState("");
   const {
     isOpen: isOpenModal,
     onOpen: onOpenModal,
     onOpenChange: onOpenModalChange,
   } = useDisclosure();
+  const [sendEmail] = useLazySendToEmailQuery();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [workSpace] = useState(workSpaces[0]);
+  const [workSpace] = useState(workSpaceData);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editName, setEditName] = useState("");
   const [updatedUsers, setUpdatedUsers] = useState<
@@ -69,7 +99,7 @@ export default function Workspace() {
     }
   }, [isOpen]);
 
-  const params = useParams();
+  // const params = useParams();
 
   const handleApiSaveChanges = (closeHandler: () => void) => {
     console.log(updatedUsers);
@@ -97,13 +127,16 @@ export default function Workspace() {
     setEditName("");
   };
 
-  const sendEmailHanlder = (onCloseModal: () => void) => {
-    console.log(mail);
+  const sendEmailHanlder = async (onCloseModal: () => void) => {
+    const html = document.createElement("html");
+    const body = document.createElement("body");
+    html.appendChild(body);
+    body.innerHTML = JSON.stringify(workSpace.dialog);
+    await sendEmail({
+      email: mail,
+      html,
+    });
     onCloseModal();
-    // {
-    //   email:string,
-    //   html:string
-    //   }
   };
 
   return (
@@ -229,7 +262,9 @@ export default function Workspace() {
               title="Выжимка встречи"
             >
               <ScrollShadow className="flex-1 p-4">
-                <div className="flex flex-col gap-4 w-full">{workSpace.summary}</div>
+                <div className="flex flex-col gap-4 w-full">
+                  {workSpace.summary}
+                </div>
               </ScrollShadow>
             </AccordionItem>
             <AccordionItem

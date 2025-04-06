@@ -11,7 +11,9 @@ import {
 } from "@heroui/react";
 import DefaultLayout from "@/layouts/default";
 import { Icon } from "@iconify/react";
+import { useLazyUploadFileQuery } from "@/api";
 export default function Create() {
+  const [upload] = useLazyUploadFileQuery();
   const [file, setFile] = React.useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = React.useState(0);
   const [isUploading, setIsUploading] = React.useState(false);
@@ -27,7 +29,7 @@ export default function Create() {
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!file) return;
-
+    upload(file);
     setIsUploading(true);
 
     const interval = setInterval(() => {
