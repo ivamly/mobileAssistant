@@ -7,6 +7,7 @@ import com.zzx.backend.llm.dto.SummaryRequest;
 import com.zzx.backend.llm.dto.TaskRequest;
 import com.zzx.backend.llm.service.LLMService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -20,7 +21,9 @@ import java.util.List;
 public class LLMServiceImpl implements LLMService {
 
     public static final String URL = "https://ai.rt.ru/api/1.0/gigachat/chat";
-    public static final String TOKEN = "eyJhbGciOiJIUzM4NCJ9.eyJzY29wZXMiOlsiZ2lnYUNoYXQiXSwic3ViIjoiaGsxIiwiaWF0IjoxNzQzMDAyMjY0LCJleHAiOjE3NDQyMTE4NjR9.8mb5iFcKna0P2HnR8KgqLep5NC15H6c1IW6GWMX6pQS30Hq2t5Z3Y1DVgbm6__-S";
+
+    @Value("${llm.token}")
+    private String TOKEN;
 
     @Override
     public SummaryData getSummary(TranscriptionData transcriptionData) {

@@ -9,6 +9,7 @@ import com.zzx.backend.common.dto.ParticipantData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.UUID;
 
 @Service
@@ -40,5 +41,10 @@ public class ParticipantServiceImpl implements ParticipantService {
                         mapper.toEntity(updatedParticipant)
                 )
         );
+    }
+
+    @Override
+    public void saveAll(Collection<ParticipantData> participantsData) {
+
     }
 }

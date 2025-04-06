@@ -1,9 +1,9 @@
 package com.zzx.backend.asr.service;
 
+import com.zzx.backend.common.dto.ASRAggregateData;
 import com.zzx.backend.common.dto.RecordData;
-import com.zzx.backend.common.dto.TranscriptionData;
 
 public interface ASRService {
 
-    TranscriptionData getTranscription(RecordData recordData);
+    ASRAggregateData getTranscription(RecordData recordData);
 }

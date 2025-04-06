@@ -1,13 +1,17 @@
 package com.zzx.backend.asr.parser;
 
+import com.zzx.backend.asr.dto.Line;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class TranscriptParser {
 
-    public String parse(String data) {
+    public List<Line> parse(String data) {
         JSONArray jsonArray = new JSONArray();
 
         // Разделяем входные данные на строки
@@ -51,6 +55,28 @@ public class TranscriptParser {
         }
 
         // Возвращаем результат в виде строки JSON
-        return jsonArray.toString(2); // Форматированный вывод JSON
+        return convert(jsonArray.toString(2)); // Форматированный вывод JSON
+    }
+
+    public List<Line> convert(String jsonData) {
+        List<Line> lines = new ArrayList<>();
+
+        try {
+            JSONArray jsonArray = new JSONArray(jsonData);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                Line line = new Line();
+                line.setSpeaker(jsonObject.getString("speaker"));
+                line.setQuote(jsonObject.getString("quote"));
+
+                lines.add(line);
+            }
+        } catch (Exception e) {
+            System.out.println("Ошибка при разборе JSON: " + e.getMessage());
+        }
+
+        return lines;
     }
 }
