@@ -1,7 +1,10 @@
 package com.zzx.backend.assistant.service.entity.impl;
 
+import com.zzx.backend.assistant.mapper.TranscriptionMapper;
+import com.zzx.backend.assistant.repository.TranscriptionRepository;
 import com.zzx.backend.assistant.service.entity.TranscriptionService;
 import com.zzx.backend.common.dto.TranscriptionData;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
