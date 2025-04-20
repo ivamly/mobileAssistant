@@ -14,6 +14,6 @@ public class FileControllerImpl implements FileController {
 
     @Override
     public Boolean uploadFile(MultipartFile file) {
-        return null;
+        return fileService.uploadFile(file);
     }
 }
